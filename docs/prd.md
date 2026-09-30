@@ -19,28 +19,28 @@ Segundo - Produto:
 Usuários dos "dois lados":
 
 1 - Dono do negócio
-1.1 - Confere agendamentos por período
-1.2 - Cadastra e edita um recurso
-1.3 - Cadastra horário de funcionamento
-1.4 - Cancela um agendamento
-1.5 - Inativa e Exclui um recurso
+- 1.1 - Confere agendamentos por período
+- 1.2 - Cadastra e edita um recurso
+- 1.3 - Cadastra horário de funcionamento
+- 1.4 - Cancela um agendamento
+- 1.5 - Inativa e Exclui um recurso
 
 2 - Cliente
-2.1 - Consulta horários disponíveis
-2.2 - Realiza agendamento
-2.3 - Consulta agendamento realizado
-2.4 - Cancela agendamento
+- 2.1 - Consulta horários disponíveis
+- 2.2 - Realiza agendamento
+- 2.3 - Consulta agendamento realizado
+- 2.4 - Cancela agendamento
 
 Na Fase 1 não há tela; a API será usada por meio de testes automatizados e ferramentas de requisição, simulando as ações dos dois usuários.
 
 ## Glossário
 
-Recurso - O que será agendado, pode ser um profissional, mesa, quadra, box de lavagem.
-Agendamento - Reserva feita por um cliente de um intervalo de tempo para utilizar um recurso. Contém: recurso agendado, cliente que agendou, data, horário de início, duração e situação (ativo ou cancelado).
-Dono do negócio - Responsável pelo cadastro do recurso e horário de funcionamento, seria o comerciante
-Cliente - Pessoa que deseja agendar um recurso
-Horário de funcionamento - É o período em que um recurso pode ser agendado, esse período é cadastrado pelo dono do negócio.
-Horário disponível - Horários sem agendamentos realizados para aquele recurso, dentro do horário de funcionamento cadastrado pelo dono do negócio.
+- Recurso - O que será agendado, pode ser um profissional, mesa, quadra, box de lavagem.
+- Agendamento - Reserva feita por um cliente de um intervalo de tempo para utilizar um recurso. Contém: recurso agendado, cliente que agendou, data, horário de início, duração e situação (ativo ou cancelado).
+- Dono do negócio - Responsável pelo cadastro do recurso e horário de funcionamento, seria o comerciante
+- Cliente - Pessoa que deseja agendar um recurso
+- Horário de funcionamento - É o período em que um recurso pode ser agendado, esse período é cadastrado pelo dono do negócio.
+- Horário disponível - Horários sem agendamentos realizados para aquele recurso, dentro do horário de funcionamento cadastrado pelo dono do negócio.
 
 ## Escopo 
 
