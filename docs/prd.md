@@ -44,9 +44,38 @@ Na Fase 1 não há tela; a API será usada por meio de testes automatizados e fe
 
 ## Escopo 
 
-Agendamento de recurso com data e hora, cancelamento de agendamento, cadastro de recurso, inativar recurso, excluir recurso.
+### Cadastro de Recursos
+- Cadastrar recurso
+- Editar recurso
+- Inativar recurso
+- Ativar recurso
+- Excluir recurso
 
-#Fora do escopo
+### Horário de funcionamento
+- Cadastrar horário de funcionamento de um recurso
+- Editar horário de funcionamento de um recurso
+
+### Agendamentos
+- Consultar horário disponível de um recurso
+- Realizar agendamento
+- Consultar agendamento realizado
+- Cancelar agendamento
+- Consultar agendamentos de clientes por período
+
+### Fora do escopo
+Itens sem fase definida estão no Backlog.
+- Cadastro de usuário
+- Preço de um agendamento
+- Agendamentos em lote
+- Agendamento recorrente
+- Lembrete de agendamento
+- Integração com Google Agenda
+- Agendar por WhatsApp
+- Confirmar por WhatsApp
+- Interface (frontend), Fase 2
+- Copiar horário de funcionamento de outro recurso
+- Atender vários negócios no mesmo sistema, cada um vendo apenas os próprios dados (multi-tenant)
+- Módulos por nicho
 
 Integração com whatsapp, Tela (frontend)
 
