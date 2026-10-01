@@ -77,7 +77,6 @@ Itens sem fase definida estão no Backlog.
 - Atender vários negócios no mesmo sistema, cada um vendo apenas os próprios dados (multi-tenant)
 - Módulos por nicho
 
-Integração com whatsapp, Tela (frontend)
 
 ## Regras de negócio 
 
