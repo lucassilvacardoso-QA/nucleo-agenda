@@ -63,7 +63,7 @@ Na Fase 1 não há tela; a API será usada por meio de testes automatizados e fe
 - Consultar agendamentos de clientes por período
 
 ### Fora do escopo
-Itens sem fase definida estão no Backlog.
+Itens sem fase definida serão avaliados para as próximas fases.
 - Cadastro de usuário
 - Preço de um agendamento
 - Agendamentos em lote
