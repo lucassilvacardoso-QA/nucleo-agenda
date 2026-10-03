@@ -86,6 +86,99 @@ RN1 -
 
 ## Dúvidas em aberto
 
-D1 - O Dono do negócio pode não aceitar um agendamento de determinado cliente?
-D2 - Como o sistema tratará fuso horários?
-D3 - Como identificar um cliente sem login? 
+**D1 – O dono do negócio pode recusar o agendamento de determinado cliente?**
+- **Por que importa:** define se o agendamento é confirmado na hora ou se
+  passa por aprovação. Afeta as situações possíveis de um agendamento,
+  o fluxo do cliente e os cenários de teste.
+- **Opções:**
+  - **Não:** todo agendamento dentro das regras é confirmado
+    automaticamente. Mais simples e mais rápido para o cliente.
+  - **Sim, por bloqueio:** o dono mantém uma lista de clientes bloqueados
+    (pelo telefone), que não conseguem agendar.
+  - **Sim, por aprovação:** todo agendamento nasce "pendente" e o dono
+    aprova ou recusa. Cria uma nova situação além de ativo e cancelado.
+- **Recomendação do tech lead:** "Não" na Fase 1, deixando o bloqueio
+  para o Backlog. Mantém o sistema simples e o fluxo do cliente direto.
+- **Status:** Aberta.
+
+**D2 – Como o sistema trata fuso horário?**
+- **Por que importa:** o Brasil tem mais de um fuso, e o servidor onde o
+  sistema roda pode estar em outro fuso. Sem uma regra, um agendamento
+  das 19h pode ser gravado ou exibido em horário errado. É uma das
+  maiores fontes de bugs em sistemas de agenda.
+- **Opções:**
+  - **Fuso único:** a Fase 1 considera apenas o horário de Brasília.
+    Simples, mas não atende negócios em outros fusos.
+  - **Fuso por recurso:** cada recurso informa o seu fuso, e o sistema
+    converte. Completo, porém mais complexo.
+  - **Em ambos os casos:** guardar as datas no banco em UTC (o horário
+    padrão mundial) e converter só na entrada e na saída, prática comum
+    no mercado.
+- **Recomendação do tech lead:** fuso único (Brasília) na Fase 1, mas já
+  guardando em UTC, para que a mudança futura seja simples.
+- **Status:** Aberta.
+
+**D3 – Como identificar um cliente sem login?**
+- **Por que importa:** o cliente precisa consultar e cancelar o próprio
+  agendamento, mas na Fase 1 não há login. A forma de identificação define
+  os campos do agendamento, quem consegue cancelar o agendamento de quem,
+  quais dados pessoais o sistema guarda (LGPD) e os cenários de teste.
+- **Opções consideradas:**
+  - **CPF:** único por pessoa, mas é um dado pessoal forte, pode ser
+    considerado excessivo pela LGPD (princípio da necessidade) e gera
+    atrito para o cliente.
+  - **Telefone:** já é coletado, o cliente sabe de cabeça e combina com a
+    futura integração com WhatsApp, mas não comprova que quem consulta é
+    o dono do número.
+  - **Código do agendamento:** não exige dado extra, mas o cliente pode
+    perder o código.
+  - **Código + telefone:** mais seguro, com um passo a mais para o cliente.
+- **Decisão:** identificar o cliente pelo **telefone**, por ser a opção
+  mais simples e não exigir coleta de dados adicionais.
+- **Risco aceito:** qualquer pessoa que conheça o telefone de um cliente
+  pode consultar e cancelar os agendamentos dele; clientes que
+  compartilham o mesmo número (ex.: família) podem cancelar o horário um
+  do outro. O risco é aceitável na Fase 1, que não tem clientes reais.
+  Deve ser revisto **antes da venda para o primeiro cliente**, por
+  exemplo com confirmação por código enviado ao telefone.
+- **Status:** Resolvida → será transformada em regra de negócio.
+
+**D4 – O que acontece com os agendamentos futuros de um recurso inativado?**
+- **Por que importa:** inativar é temporário (manutenção, férias de um
+  profissional). Se não houver regra, o cliente pode chegar e encontrar
+  o recurso indisponível, ou o sistema pode ficar com agendamentos
+  "órfãos".
+- **Opções:**
+  - **Impedir a inativação** enquanto houver agendamentos futuros: o dono
+    precisa cancelá-los antes. Seguro, mas trabalhoso.
+  - **Cancelar automaticamente** os agendamentos futuros ao inativar.
+    Prático para o dono, ruim para o cliente, que perde o horário sem aviso
+    (lembrete e WhatsApp estão fora do escopo).
+  - **Manter os agendamentos existentes** e bloquear apenas os novos.
+    O recurso "sai da vitrine", mas honra o que já foi marcado.
+- **Recomendação do tech lead:** impedir a inativação com agendamentos
+  futuros. Na Fase 1 não há como avisar o cliente, então é a opção que
+  evita surpresas, e o sistema informa ao dono quais agendamentos precisam
+  ser cancelados.
+- **Status:** Aberta.
+
+**D5 – O que acontece com os agendamentos de um recurso excluído? Qual a
+diferença de uso entre inativar e excluir?**
+- **Por que importa:** excluir é definitivo. Se o recurso for apagado do
+  banco, os agendamentos antigos ficam apontando para algo que não existe
+  mais, e o histórico se perde.
+- **Opções:**
+  - **Exclusão física:** o recurso é apagado do banco. Só seria possível
+    se ele nunca teve nenhum agendamento.
+  - **Exclusão lógica (soft delete):** o recurso é marcado como excluído,
+    some de todas as listas e não pode ser reativado, mas continua no banco
+    para preservar o histórico.
+  - **Remover a exclusão do escopo** e manter só a inativação.
+- **Diferença de uso proposta:** inativar é temporário e reversível
+  (manutenção, férias); excluir é definitivo e serve para recursos
+  cadastrados por engano ou que deixaram de existir.
+- **Recomendação do tech lead:** exclusão física só para recursos sem
+  nenhum agendamento; nos demais casos, impedir a exclusão e orientar a
+  inativação. É simples e não perde histórico.
+- **Status:** Aberta.
+
