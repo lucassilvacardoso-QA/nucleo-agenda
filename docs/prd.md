@@ -97,9 +97,9 @@ RN1 -
     (pelo telefone), que não conseguem agendar.
   - **Sim, por aprovação:** todo agendamento nasce "pendente" e o dono
     aprova ou recusa. Cria uma nova situação além de ativo e cancelado.
-- **Recomendação do tech lead:** "Não" na Fase 1, deixando o bloqueio
-  para o Backlog. Mantém o sistema simples e o fluxo do cliente direto.
-- **Status:** Aberta.
+- **Decisão:** "Não" na Fase 1. Todo agendamento que cumpre as regras é
+  confirmado automaticamente. O bloqueio de clientes fica para o Backlog.
+- **Status:** Resolvida → será transformada em regra de negócio.
 
 **D2 – Como o sistema trata fuso horário?**
 - **Por que importa:** o Brasil tem mais de um fuso, e o servidor onde o
@@ -114,9 +114,9 @@ RN1 -
   - **Em ambos os casos:** guardar as datas no banco em UTC (o horário
     padrão mundial) e converter só na entrada e na saída, prática comum
     no mercado.
-- **Recomendação do tech lead:** fuso único (Brasília) na Fase 1, mas já
-  guardando em UTC, para que a mudança futura seja simples.
-- **Status:** Aberta.
+- **Decisão:** fuso único (horário de Brasília) na Fase 1, com as datas
+  guardadas em UTC, para que a mudança futura seja simples.
+- **Status:** Resolvida → será transformada em regra de negócio.
 
 **D3 – Como identificar um cliente sem login?**
 - **Por que importa:** o cliente precisa consultar e cancelar o próprio
@@ -156,11 +156,11 @@ RN1 -
     (lembrete e WhatsApp estão fora do escopo).
   - **Manter os agendamentos existentes** e bloquear apenas os novos.
     O recurso "sai da vitrine", mas honra o que já foi marcado.
-- **Recomendação do tech lead:** impedir a inativação com agendamentos
-  futuros. Na Fase 1 não há como avisar o cliente, então é a opção que
-  evita surpresas, e o sistema informa ao dono quais agendamentos precisam
-  ser cancelados.
-- **Status:** Aberta.
+- **Decisão:** impedir a inativação enquanto houver agendamentos futuros
+  ativos. Na Fase 1 não há como avisar o cliente, então é a opção que
+  evita surpresas. O sistema informa ao dono quais agendamentos precisam
+  ser cancelados antes.
+- **Status:** Resolvida → será transformada em regra de negócio.
 
 **D5 – O que acontece com os agendamentos de um recurso excluído? Qual a
 diferença de uso entre inativar e excluir?**
@@ -174,11 +174,11 @@ diferença de uso entre inativar e excluir?**
     some de todas as listas e não pode ser reativado, mas continua no banco
     para preservar o histórico.
   - **Remover a exclusão do escopo** e manter só a inativação.
-- **Diferença de uso proposta:** inativar é temporário e reversível
-  (manutenção, férias); excluir é definitivo e serve para recursos
-  cadastrados por engano ou que deixaram de existir.
-- **Recomendação do tech lead:** exclusão física só para recursos sem
-  nenhum agendamento; nos demais casos, impedir a exclusão e orientar a
-  inativação. É simples e não perde histórico.
-- **Status:** Aberta.
+- **Diferença de uso:** inativar é temporário e reversível (manutenção,
+  férias); excluir é definitivo e serve para recursos cadastrados por
+  engano ou que deixaram de existir.
+- **Decisão:** exclusão física apenas para recursos que nunca tiveram
+  nenhum agendamento. Nos demais casos, a exclusão é impedida e o dono
+  é orientado a inativar o recurso.
+- **Status:** Resolvida → será transformada em regra de negócio.
 
