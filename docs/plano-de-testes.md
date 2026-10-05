@@ -118,6 +118,47 @@ para que os resultados não dependam do dia ou da hora em que a suíte roda.
 - **GitHub Actions:** execução automática dos testes a cada push
   
 ## 4. Ambiente e dados de teste
+
+### 4.1 Ambiente
+- **Local:** API e banco PostgreSQL executados via Docker Compose, com um
+  banco **exclusivo para testes**, separado do banco de desenvolvimento.
+- **CI:** os mesmos testes executados no GitHub Actions a cada push, com o
+  mesmo Docker Compose, para que o resultado local e o do CI sejam iguais.
+
+### 4.2 Dados de teste
+- **Cada teste cria os próprios dados** pela API (recursos, horários e
+  agendamentos) e não depende de dados criados por outro teste.
+- **O banco é limpo entre os testes**, garantindo que cada um comece do
+  mesmo ponto de partida.
+- **Dados fictícios:** nomes e telefones usados nos testes são inventados
+  (ex.: telefone 11900000001), sem nenhum dado pessoal real (LGPD).
+- **Datas relativas:** os agendamentos usam datas calculadas a partir do
+  relógio controlado (ex.: "amanhã às 10:00"), e não datas fixas, que
+  ficariam no passado com o tempo.
+
 ## 5. Critérios de entrada e de saída
+
+### 5.1 Critérios de entrada (quando os testes podem começar)
+- PRD da Fase 1 aprovado.
+- Funcionalidade implementada e disponível na branch de desenvolvimento.
+- Ambiente de testes subindo com Docker Compose sem erros.
+
+### 5.2 Critérios de saída (quando os testes da Fase 1 estão concluídos)
+- Todas as regras de negócio (RN01 a RN27) com casos de teste
+  rastreados no plano.
+- 100% dos testes automatizados passando no GitHub Actions.
+- Nenhum defeito de severidade **crítica** ou **alta** em aberto.
+- RNF04 e RNF05 verificados manualmente, com o resultado registrado.
+
 ## 6. Riscos
+
+| Risco | Impacto | Mitigação |
+|---|---|---|
+| Testes instáveis por depender do relógio ou do fuso do computador | Testes passam ou falham conforme o horário em que rodam | Relógio controlado nos testes; datas relativas; horários em UTC (RNF06) |
+| Testes dependentes entre si | Um teste falha por causa de outro, dificultando encontrar o problema | Cada teste cria os próprios dados; banco limpo entre os testes |
+| Diferença entre o ambiente local e o CI | Teste passa local e falha no CI (ou o contrário) | Mesmo Docker Compose nos dois ambientes; versões travadas no `package-lock.json` |
+| Medição de desempenho variável (RNF01) | Tempo de resposta muda conforme a máquina | Medir em várias execuções e considerar o percentil 95, e não uma medição isolada |
+| Mudança nas regras durante o desenvolvimento | Casos de teste ficam desatualizados | Toda alteração em uma RN atualiza o plano no mesmo commit |
+| Tempo disponível limitado (projeto pessoal) | Cobertura incompleta ao fim da fase | Priorizar as regras de maior risco: RN19, RN15, RN18 e RN06 |
+
 ## 7. Casos de teste
