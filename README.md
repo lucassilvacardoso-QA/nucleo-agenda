@@ -16,7 +16,7 @@ O projeto simula o ciclo completo de um time de produto: requisitos antes do có
 |---|---|
 | [PRD – Documento de Requisitos do Produto](docs/prd.md) | Problema, objetivos, escopo, 27 regras de negócio e requisitos não funcionais |
 | [Decisões técnicas (ADRs)](docs/decisoes/) | Registro das decisões de arquitetura, com contexto, motivo e consequências |
-| [Plano de testes](docs/plano-de-testes.md) | Estratégia, níveis de teste e casos de teste rastreados às regras *(casos de teste em construção)* |
+| [Plano de testes](docs/plano-de-testes.md) | Estratégia, níveis de teste e casos de teste rastreados às regras |
 
 ## Estratégia de testes
 
