@@ -2,7 +2,7 @@
 
 API de agendamento de recursos (quadras, profissionais, mesas, boxes de lavagem) construída com **foco em qualidade de software**.
 
-> 🚧 **Projeto em desenvolvimento.** Atualmente na Fase 1: documentação concluída e plano de testes em construção.
+> 🚧 **Projeto em desenvolvimento.** Atualmente na Fase 1: documentação e plano de testes concluídos, e projeto técnico em construção.
 
 ## Sobre o projeto
 
