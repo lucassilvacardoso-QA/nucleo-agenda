@@ -14,7 +14,7 @@ O projeto simula o ciclo completo de um time de produto: requisitos antes do có
 
 | Documento | Descrição |
 |---|---|
-| [PRD – Requisitos do produto](docs/prd.md) | Problema, objetivos, escopo, 27 regras de negócio e requisitos não funcionais |
+| [PRD – Documento de Requisitos do Produto](docs/prd.md) | Problema, objetivos, escopo, 27 regras de negócio e requisitos não funcionais |
 | [Decisões técnicas (ADRs)](docs/decisoes/) | Registro das decisões de arquitetura, com contexto, motivo e consequências |
 | [Plano de testes](docs/plano-de-testes.md) | Estratégia, níveis de teste e casos de teste rastreados às regras *(casos de teste em construção)* |
 
@@ -38,7 +38,7 @@ TypeScript · Node.js · NestJS · PostgreSQL · Docker · Vitest · Playwright 
 - [ ] **Fase 1** – API de agendamento com testes unitários, de API e CI
   - [x] PRD
   - [x] Decisões técnicas iniciais
-  - [ ] Plano de testes (estratégia concluída; casos de teste em construção)
+  - [x] Plano de testes
   - [ ] Projeto técnico (rotas da API e banco de dados)
   - [ ] Implementação e testes automatizados
 - [ ] **Fase 2** – Interface (frontend) e testes E2E
