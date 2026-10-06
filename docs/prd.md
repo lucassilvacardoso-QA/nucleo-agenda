@@ -200,11 +200,12 @@ Itens sem fase definida serão avaliados para as próximas fases.
 - **Opções:**
   - **Exclusão física:** o recurso é apagado do banco. Só seria possível se ele nunca teve nenhum agendamento.
   - **Exclusão lógica (soft delete):** o recurso é marcado como excluído, some de todas as listas e não pode ser reativado, mas continua no banco para preservar o histórico.
- 
-**D6 – Deve existir uma antecedência mínima para agendar?**
-- **Por que importa:** pela RN18, um agendamento pode começar no exato minuto em que é feito, o que é pouco realista.
-- **Status:** Aberta. Mantido o comportamento atual na Fase 1; reavaliar antes da Fase 2.
   - **Remover a exclusão do escopo** e manter só a inativação.
 - **Diferença de uso:** inativar é temporário e reversível (manutenção, férias); excluir é definitivo e serve para recursos cadastrados por engano ou que deixaram de existir.
 - **Decisão:** exclusão física apenas para recursos que nunca tiveram nenhum agendamento. Nos demais casos, a exclusão é impedida e o dono é orientado a inativar o recurso.
 - **Status:** Resolvida → RN07.
+ 
+**D6 – Deve existir uma antecedência mínima para agendar?**
+- **Por que importa:** pela RN18, um agendamento pode começar no exato minuto em que é feito, o que é pouco realista.
+- **Status:** Aberta. Mantido o comportamento atual na Fase 1; reavaliar antes da Fase 2.
+ 
