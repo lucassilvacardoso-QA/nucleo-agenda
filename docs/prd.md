@@ -1,4 +1,4 @@
-# PRD – Núcleo de Agenda (Fase 1)
+# Documento de Requisitos do Produto (PRD) – Núcleo de Agenda (Fase 1)
 
 **Status:** Aprovado
 **Última atualização:** 05/10/2026
